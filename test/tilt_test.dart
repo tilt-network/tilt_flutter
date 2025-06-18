@@ -13,6 +13,12 @@ class MockTiltPlatform
 
   @override
   Future<List<String>?> getLogLines() => Future.value(['42']);
+
+  @override
+  Future<void> initialize(String publicKey, String environment) {
+    // TODO: implement initialize
+    throw UnimplementedError();
+  }
 }
 
 void main() {

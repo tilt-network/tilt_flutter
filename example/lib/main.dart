@@ -16,9 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _tilt = Tilt("pk_3NqPrvpe6nDkdtyS1gJt4kX_4MQ");
-  List<String> _logs = [];
+  final tilt = Tilt("pk_3NqPrvpe6nDkdtyS1gJt4kX_4MQ", environment: "staging");
+  List<String> logs = [];
   late final Stream<List<String>> _logsStream;
 
 
@@ -33,21 +32,21 @@ class _MyAppState extends State<MyApp> {
         .receiveBroadcastStream()
         .map((e) => List<String>.from(e));
     _logsStream.listen((logs) {
-      setState(() => _logs = logs);
+      setState(() => logs = logs);
     });
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _tilt.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+    // String platformVersion;
+    // // Platform messages may fail, so we use a try/catch PlatformException.
+    // // We also handle the message potentially returning null.
+    // try {
+    //   platformVersion =
+    //       await tilt.getPlatformVersion() ?? 'Unknown platform version';
+    // } on PlatformException {
+    //   platformVersion = 'Failed to get platform version.';
+    // }
 
     // If the widget was removed from the tree while the asynchronous platform
     // message was in flight, we want to discard the reply rather than calling
@@ -55,14 +54,14 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      // _platformVersion = platformVersion;
     });
   }
 
   Future<void> _fetchLogLines() async {
-    final snapshot = await _tilt.getLogLines();
+    final snapshot = await tilt.getLogLines();
     if (!mounted) return;
-    setState(() => _logs = snapshot ?? []);
+    setState(() => logs = snapshot ?? []);
   }
 
   @override
@@ -72,17 +71,17 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(title: const Text('Tilt Flutter')),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text('Running on: $_platformVersion'),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16),
+            //   child: Text('Running on: $_platformVersion'),
+            // ),
             const Divider(),
             const Text('Logs:'),
             Expanded(
               child: ListView.builder(
-                itemCount: _logs.length,
+                itemCount: logs.length,
                 itemBuilder: (_, i) => ListTile(
-                  title: Text(_logs[i]),
+                  title: Text(logs[i]),
                 ),
               ),
             ),
