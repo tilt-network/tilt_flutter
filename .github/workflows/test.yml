@@ -52,6 +52,12 @@ jobs:
               working-directory: example
 
             - uses: gradle/actions/setup-gradle@v3
+              with:
+                  gradle-version: '8.12'
+
+            - name: Generate gradlew
+              run: gradle wrapper --gradle-version 8.12
+              working-directory: example/android
 
             - name: Run Android unit tests
               run: ./gradlew :tilt:testDebugUnitTest
