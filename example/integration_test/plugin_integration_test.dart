@@ -10,7 +10,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:tilt/tilt.dart';
+import 'package:tilt_sdk/tilt.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
