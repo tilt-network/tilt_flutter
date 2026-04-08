@@ -1,15 +1,47 @@
-# tilt
+# tilt_sdk
 
-A new Flutter plugin project.
+Flutter plugin that turns an Android device into a **Tilt compute peer** — joining the Tilt distributed grid with a single call.
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/to/develop-plugins),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+```yaml
+dependencies:
+  tilt_sdk: ^0.1.0
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Android setup
 
+Add to `AndroidManifest.xml`:
+
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+
+<service
+    android:name="technology.tilt.sdk.Tilt"
+    android:exported="false"
+    android:foregroundServiceType="dataSync"/>
+```
+
+## Usage
+
+```dart
+import 'package:tilt_sdk/tilt.dart';
+
+// Start the peer (runs as a foreground service)
+Tilt('pk_your_public_key', environment: 'production');
+
+// Stream runtime logs
+EventChannel('tilt/logs')
+    .receiveBroadcastStream()
+    .map((e) => List<String>.from(e as List))
+    .listen((lines) => print(lines.last));
+```
+
+## Platform support
+
+| Platform | Status |
+|----------|--------|
+| Android  | ✅     |
+| iOS      | planned |

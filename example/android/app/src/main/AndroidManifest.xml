@@ -41,7 +41,7 @@
 
         <!-- region tilt -->
         <service
-            android:name="com.example.tilt.TiltSdkService"
+            android:name="technology.tilt.sdk.Tilt"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
         <!-- endregion tilt -->

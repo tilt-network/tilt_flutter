@@ -1,0 +1,43 @@
+name: publish
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    publish:
+        name: pub.dev publish
+        runs-on: ubuntu-latest
+        permissions:
+            id-token: write  # required for OIDC auth with pub.dev
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: subosito/flutter-action@v2
+              with:
+                  flutter-version: '3.32.0'
+                  channel: stable
+                  cache: true
+
+            - name: Check if version already published
+              id: version_check
+              run: |
+                  CURRENT=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+                  echo "current=$CURRENT" >> "$GITHUB_OUTPUT"
+                  PUBLISHED=$(curl -sf "https://pub.dev/api/packages/tilt_sdk" \
+                      | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['latest']['version'])" \
+                      2>/dev/null || echo "none")
+                  echo "published=$PUBLISHED" >> "$GITHUB_OUTPUT"
+                  if [ "$CURRENT" = "$PUBLISHED" ]; then
+                      echo "skip=true" >> "$GITHUB_OUTPUT"
+                      echo "Version $CURRENT already published — skipping."
+                  else
+                      echo "skip=false" >> "$GITHUB_OUTPUT"
+                      echo "Publishing $CURRENT (was: $PUBLISHED)"
+                  fi
+
+            - name: Publish to pub.dev
+              if: steps.version_check.outputs.skip == 'false'
+              run: flutter pub publish --force

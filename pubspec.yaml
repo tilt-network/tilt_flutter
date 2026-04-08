@@ -1,7 +1,7 @@
-name: tilt
-description: "A new Flutter plugin project."
-version: 0.0.1
-homepage:
+name: tilt_sdk
+description: "Flutter plugin for the Tilt peer SDK. Turns a mobile device into a compute peer on the Tilt grid via a simple Tilt(publicKey) API."
+version: 0.1.0
+repository: https://github.com/tilt-network/tilt_flutter
 
 environment:
   sdk: ^3.8.0
