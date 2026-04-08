@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tilt_sdk/tilt.dart';
+import 'package:tilt/tilt.dart';
 
 void main() => runApp(const TiltExampleApp());
 
