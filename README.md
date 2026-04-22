@@ -1,4 +1,4 @@
-# tilt_sdk
+# tilt_network
 
 Flutter plugin that turns an Android device into a **Tilt compute peer** — joining the Tilt distributed grid with a single call.
 
@@ -6,7 +6,7 @@ Flutter plugin that turns an Android device into a **Tilt compute peer** — joi
 
 ```yaml
 dependencies:
-  tilt_sdk: ^0.1.0
+  tilt_network: ^0.1.0
 ```
 
 ## Android setup
@@ -27,7 +27,7 @@ Add to `AndroidManifest.xml`:
 ## Usage
 
 ```dart
-import 'package:tilt_sdk/tilt.dart';
+import 'package:tilt_network/tilt.dart';
 
 // Start the peer (runs as a foreground service)
 Tilt('pk_your_public_key', environment: 'production');

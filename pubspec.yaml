@@ -1,4 +1,4 @@
-name: tilt
+name: tilt_network
 description: "Flutter plugin for the Tilt peer SDK. Turns a mobile device into a compute peer on the Tilt grid via a simple Tilt(publicKey) API."
 version: 0.1.0
 repository: https://github.com/tilt-network/tilt_flutter
@@ -35,7 +35,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.tilt
+        package: technology.tilt.network
         pluginClass: TiltPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
