@@ -1,4 +1,4 @@
-package com.example.tilt
+package technology.tilt.network
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.Result

@@ -1,4 +1,4 @@
-package com.example.tilt
+package technology.tilt.network
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
