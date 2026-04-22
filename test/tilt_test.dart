@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tilt/tilt.dart';
-import 'package:tilt/tilt_platform_interface.dart';
-import 'package:tilt/tilt_method_channel.dart';
+import 'package:tilt_network/tilt.dart';
+import 'package:tilt_network/tilt_platform_interface.dart';
+import 'package:tilt_network/tilt_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockTiltPlatform with MockPlatformInterfaceMixin implements TiltPlatform {
